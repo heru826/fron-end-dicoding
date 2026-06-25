@@ -1,0 +1,263 @@
+/* KETERANGAN & FUNGSI CSS:
+          Mengatur tema warna dasar, tata letak (layout), ukuran font, dan efek transisi animasi 
+          agar tampilan aplikasi rapi, responsif di HP/Laptop, serta terlihat profesional.
+        */
+:root {
+  --primary: #4f46e5; /* Warna utama ungu untuk tema aplikasi */
+  --success: #10b981; /* Warna hijau untuk indikator pemasukan */
+  --danger: #ef4444; /* Warna merah untuk indikator pengeluaran */
+  --warning: #f59e0b; /* Warna kuning untuk tombol edit */
+  --dark: #1f2937; /* Warna abu-abu gelap untuk teks utama */
+  --light: #f3f4f6; /* Warna latar belakang abu-abu terang */
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #eef2f6;
+  color: var(--dark);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.tracker-header {
+  border-bottom: 2px solid var(--light);
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tracker-header i {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+.tracker-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.tracker-header p {
+  margin: 5px 0 0 0;
+  color: #6b7280;
+}
+
+/* Desain Grid untuk Panel Dasbor Atas */
+.dashboard {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+.card p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.card i {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 2rem;
+  opacity: 0.15;
+}
+
+.card.balance {
+  background: #e0e7ff;
+  color: var(--primary);
+}
+.card.income {
+  background: #d1fae5;
+  color: var(--success);
+}
+.card.expense {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+/* Gaya visual formulir input */
+.form-section {
+  background: var(--light);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.form-section h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 10px;
+}
+
+/* Responsivitas: Mengubah susunan kolom menjadi vertikal jika dibuka di HP */
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  .dashboard {
+    flex-direction: column;
+  }
+  .lists-container {
+    flex-direction: column;
+  }
+}
+
+input,
+select,
+button {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary);
+}
+
+button.btn-submit {
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+button.btn-submit:hover {
+  background-color: #3730a3;
+}
+
+/* Desain Kolom Pencarian */
+.search-box {
+  position: relative;
+  margin-bottom: 25px;
+}
+.search-box input {
+  width: 100%;
+  padding-left: 40px;
+  box-sizing: border-box;
+}
+.search-box i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+/* Desain Area Kontainer Daftar Transaksi */
+.lists-container {
+  display: flex;
+  gap: 20px;
+}
+.list-section {
+  flex: 1;
+  background: white;
+  padding: 5px;
+}
+.list-section h2 {
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--light);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Desain Kotak Kartu Transaksi Tunggal (Bekerja dinamis bersama JS) */
+.transaction-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s;
+}
+.transaction-item:hover {
+  transform: translateY(-2px);
+}
+
+.transaction-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+.transaction-item p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.transaction-item p i {
+  color: #9ca3af;
+  width: 16px;
+  text-align: center;
+}
+
+.transaction-item__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 10px;
+}
+
+.transaction-item__actions button {
+  padding: 6px 12px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  background: var(--light);
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.transaction-item__actions button:hover {
+  opacity: 0.8;
+}
+.btn-action-delete {
+  background-color: #fee2e2 !important;
+  color: var(--danger) !important;
+}
+.btn-action-edit {
+  background-color: #fef3c7 !important;
+  color: var(--warning) !important;
+}

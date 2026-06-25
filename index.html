@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Finance & Expense Tracker App</title>
+
+    <!-- 
+      KETERANGAN: Memanggil library Font Awesome via CDN.
+      Fungsinya agar kita bisa menggunakan berbagai macam ikon modern (seperti ikon dompet, uang, trash, dll.) 
+      secara langsung di dalam aplikasi tanpa harus mendownload file gambar secara manual.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="baru.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 
+          HEADER AREA
+          Fungsi: Menampilkan judul aplikasi dan sapaan profil pengguna.
+          Catatan Rubrik: Elemen h1 memiliki class 'tracker-header__greeting' yang akan diisi nama Anda lewat JavaScript.
+        -->
+      <header class="tracker-header">
+        <i class="fa-solid fa-wallet"></i>
+        <div>
+          <h1 class="tracker-header__greeting">Heru Setiadi (herus_etiadi)</h1>
+          <p>Pantau pemasukan dan pengeluaran finansial Anda</p>
+        </div>
+      </header>
+
+      <!-- 
+          DASHBOARD AREA
+          Fungsi: Menampilkan rangkuman total uang secara real-time.
+          Catatan Rubrik: Nilai teks di dalam tag p (seperti totalIncome, totalExpense, totalBalance) 
+          akan dihitung dan diubah secara otomatis oleh JavaScript.
+        -->
+      <section class="dashboard">
+        <div class="card income">
+          <h3>Total Pemasukan</h3>
+          <p id="totalIncome">Rp0</p>
+          <i class="fa-solid fa-money-bill-trend-up"></i>
+        </div>
+        <div class="card expense">
+          <h3>Total Pengeluaran</h3>
+          <p id="totalExpense">Rp0</p>
+          <i class="fa-solid fa-money-bill-transfer"></i>
+        </div>
+        <div class="card balance">
+          <h3>Sisa Saldo</h3>
+          <p id="totalBalance">Rp0</p>
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+      </section>
+
+      <!-- 
+          FORM INPUT AREA
+          Fungsi: Tempat user menginputkan judul, uang, tanggal, dan jenis transaksi.
+          Catatan Rubrik: Semua ID di sini wajib ada karena akan ditangkap oleh JavaScript untuk diproses datanya.
+        -->
+      <section class="form-section">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Catat Transaksi Baru</h2>
+        <form id="transactionForm">
+          <!-- Input Judul -->
+          <input
+            type="text"
+            id="transactionTitle"
+            placeholder="Judul (ex: Gaji)"
+            required
+          />
+          <!-- Input Nominal Angka (min 1 rupiah) -->
+          <input
+            type="number"
+            id="transactionAmount"
+            placeholder="Nominal (Rp)"
+            min="1"
+            required
+          />
+          <!-- Input Kalender Tanggal -->
+          <input type="date" id="transactionDate" required />
+          <!-- Pilihan Tipe Transaksi -->
+          <select id="transactionType" required>
+            <option value="income">Pemasukan</option>
+            <option value="expense">Pengeluaran</option>
+          </select>
+          <!-- Tombol Submit -->
+          <button type="submit" class="btn-submit">Tambah</button>
+        </form>
+      </section>
+
+      <!-- 
+          SEARCH AREA
+          Fungsi: Mengambil kata kunci ketikan pengguna untuk menyaring isi daftar transaksi secara real-time.
+        -->
+      <section class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          id="searchTransaction"
+          placeholder="Cari riwayat transaksi..."
+        />
+      </section>
+
+      <!-- 
+          LISTS CONTAINER AREA
+          Fungsi: Wadah penampung kartu-kartu transaksi yang dibuat oleh JavaScript.
+          Jika tipenya 'income' dimasukkan ke id 'incomeList', jika 'expense' ke id 'expenseList'.
+        -->
+      <div class="lists-container">
+        <!-- Sektor List Pemasukan -->
+        <section class="list-section">
+          <h2>
+            <i
+              class="fa-solid fa-circle-arrow-down"
+              style="color: var(--success)"
+            ></i>
+            Pemasukan
+          </h2>
+          <div id="incomeList"></div>
+        </section>
+
+        <!-- Sektor List Pengeluaran -->
+        <section class="list-section">
+          <h2>
+            <i
+              class="fa-solid fa-circle-arrow-up"
+              style="color: var(--danger)"
+            ></i>
+            Pengeluaran
+          </h2>
+          <div id="expenseList"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- 
+      KETERANGAN: Menghubungkan kerangka HTML ini dengan berkas logika mesin JavaScript (main.js).
+    -->
+    <script src="main.js"></script>
+  </body>
+</html>
